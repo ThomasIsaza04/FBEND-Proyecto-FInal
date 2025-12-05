@@ -32,7 +32,7 @@ Sistema completo de gestión de tareas que permite crear, leer, actualizar y eli
 - **VS Code** - Editor de código
 - **Nodemon** - Auto-restart del servidor en desarrollo
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 \`\`\`
 trabajo-BACK-FRONTEND/
@@ -196,7 +196,7 @@ Proyecto académico - [SENA-Analisis y desarrollo de software] 2025
 
 **[Tu Nombre]**
 - Email: tu-email@ejemplo.com
-- GitHub: [https://github.com/ThomasIsaza04/FRONT-BACKEND.git]
+- GitHub: [https://github.com/ThomasIsaza04/FBEND-Proyecto-FInal]
 
 ---
 

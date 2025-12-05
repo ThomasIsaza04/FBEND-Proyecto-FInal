@@ -70,11 +70,11 @@ trabajo-BACK-FRONTEND/
 
 | Método | Endpoint | Descripción | Body |
 |--------|----------|-------------|------|
-| GET | `/api/tasks` | Obtener todas las tareas | - |
-| GET | `/api/tasks/:id` | Obtener tarea por ID | - |
-| POST | `/api/tasks` | Crear nueva tarea | `{ title, description }` |
-| PUT | `/api/tasks/:id` | Actualizar tarea | `{ title?, description?, completed? }` |
-| DELETE | `/api/tasks/:id` | Eliminar tarea | - |
+| GET | `/api/task` | Obtener todas las tareas | - |
+| GET | `/api/task/:id` | Obtener tarea por ID | - |
+| POST | `/api/task` | Crear nueva tarea | `{ title, description }` |
+| PUT | `/api/task/:id` | Actualizar tarea | `{ title?, description?, completed? }` |
+| DELETE | `/api/task/:id` | Eliminar tarea | - |
 
 ### Ejemplos de uso
 
@@ -87,7 +87,7 @@ curl -X POST http://localhost:3000/api/task \
 
 **Obtener todas las tareas:**
 \`\`\`bash
-curl http://localhost:3000/api/tasks
+curl http://localhost:3000/api/task
 \`\`\`
 
 **Actualizar tarea:**

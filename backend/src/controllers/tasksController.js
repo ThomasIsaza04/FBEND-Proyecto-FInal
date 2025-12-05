@@ -2,8 +2,8 @@ import { prisma } from '../prisma.js';
 
 
 export const getAll = async (req, res) => {
-const tasks = await prisma.task.findMany({ orderBy: { createdAt: 'desc' } });
-res.json(tasks);
+const task = await prisma.task.findMany({ orderBy: { createdAt: 'desc' } });
+res.json(task);
 };
 
 

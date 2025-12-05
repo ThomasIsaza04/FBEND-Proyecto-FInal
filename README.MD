@@ -1,159 +1,203 @@
-Proyecto Fullstack: Aplicación de Tareas (Express + Prisma + HTML/JS)
+Sistema de Gestión de Tareas
 
-Este proyecto implementa una aplicación completa de gestión de tareas, desarrollada con un backend en Express y Prisma conectado a una base de datos SQLite, y un frontend en HTML, CSS y JavaScript que consume la API mediante peticiones HTTP. Todo el código está organizado siguiendo buenas prácticas de arquitectura y se encuentra estructurado para ser desplegado en GitHub en un repositorio principal con dos carpetas: backend y frontend.
+Aplicación fullstack para administrar tareas diarias con backend REST API y frontend vanilla JavaScript.
 
-1. Descripción general del proyecto
+Información del Proyecto
 
-El objetivo del sistema es permitir al usuario crear, listar, actualizar y eliminar tareas. La aplicación está dividida en dos partes:
+**Desarrollado por:** [Thomas Isaza Isaza]  
+**Materia:** [Node.js]    
+**Universidad:** [Analisis y desarrollo de software]  
+**Fecha:** [4 Diciembre 2025]
 
-Backend (API REST con Express + Prisma).
+## Descripción
 
-Frontend (HTML, CSS y JavaScript consumiendo la API).
+Sistema completo de gestión de tareas que permite crear, leer, actualizar y eliminar (CRUD) tareas. Implementa una arquitectura cliente-servidor con API REST, base de datos PostgreSQL y frontend responsive.
 
-Repositorio unificado que contiene ambas partes.
+## Tecnologías Utilizadas
 
-El backend expone endpoints para realizar operaciones CRUD sobre una tabla llamada "tasks", mientras que el frontend se encarga de mostrar la información proveniente del servidor y permitir al usuario interactuar con las tareas.
+### Backend
+- **Node.js** - Entorno de ejecución JavaScript
+- **Express.js** - Framework para API REST
+- **Prisma ORM** - Object-Relational Mapping para PostgreSQL
+- **PostgreSQL** - Base de datos relacional
+- **CORS** - Middleware para peticiones cross-origin
 
-2. Características principales
-Backend
+### Frontend
+- **HTML5** - Estructura
+- **CSS3** - Estilos y diseño responsive
+- **JavaScript Vanilla** - Lógica del cliente (Fetch API)
 
-Construido con Node.js + Express.
+### Herramientas
+- **Git & GitHub** - Control de versiones
+- **VS Code** - Editor de código
+- **Nodemon** - Auto-restart del servidor en desarrollo
 
-Conexión a la base de datos mediante Prisma ORM.
+## 📁 Estructura del Proyecto
 
-Base de datos SQLite.
+\`\`\`
+trabajo-BACK-FRONTEND/
+├── backend/
+│   ├── prisma/
+│   │   ├── schema.prisma        # Modelo de datos
+│   │   └── migrations/          # Migraciones de BD
+│   ├── src/
+│   │   ├── controllers/         # Lógica de negocio
+│   │   │   └── tasksController.js
+│   │   ├── routes/              # Rutas de la API
+│   │   │   └── tasks.js
+│   │   └── server.js            # Servidor Express
+│   ├── .env                     # Variables de entorno
+│   ├── package.json
+│   └── .gitignore
+├── fronted/                     # Frontend
+│   ├── index.html               # Página principal
+│   ├── styles.css               # Estilos
+│   └── app.js                   # Lógica del cliente
+├── README.md                    # Este archivo
+└── .gitignore
+\`\`\`
 
-Endpoints completos para CRUD (crear, leer, actualizar y eliminar tareas).
+## Instalación y Configuración
 
-Middleware para CORS y JSON integrado.
+### Prerrequisitos
+- Node.js v18 o superior
+- PostgreSQL instalado o cuenta en [Neon.tech](https://neon.tech)
+- Git
 
-Frontend
+## 🔌 API Endpoints
 
-Interfaz sencilla con HTML y CSS.
+### **Base URL:** `http://localhost:3000/api/tasks`
 
-Uso de JavaScript para consumir la API REST.
+| Método | Endpoint | Descripción | Body |
+|--------|----------|-------------|------|
+| GET | `/api/tasks` | Obtener todas las tareas | - |
+| GET | `/api/tasks/:id` | Obtener tarea por ID | - |
+| POST | `/api/tasks` | Crear nueva tarea | `{ title, description }` |
+| PUT | `/api/tasks/:id` | Actualizar tarea | `{ title?, description?, completed? }` |
+| DELETE | `/api/tasks/:id` | Eliminar tarea | - |
 
-Renderizado dinámico de la lista de tareas.
+### Ejemplos de uso
 
-Acciones soportadas: crear tarea, completarla, desmarcarla y eliminarla.
+**Crear tarea:**
+\`\`\`bash
+curl -X POST http://localhost:3000/api/task \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Estudiar Node.js","description":"Repasar Express y Prisma"}'
+\`\`\`
 
-3. Backend: Funcionamiento interno
+**Obtener todas las tareas:**
+\`\`\`bash
+curl http://localhost:3000/api/tasks
+\`\`\`
 
-El backend expone los siguientes endpoints:
+**Actualizar tarea:**
+\`\`\`bash
+curl -X PUT http://localhost:3000/api/task/1 \
+  -H "Content-Type: application/json" \
+  -d '{"completed":true}'
+\`\`\`
 
-GET /api/tasks
-Devuelve todas las tareas.
+**Eliminar tarea:**
+\`\`\`bash
+curl -X DELETE http://localhost:3000/api/task/1
+\`\`\`
 
-POST /api/tasks
-Crea una nueva tarea. Recibe título y descripción.
+## Modelo de Datos
 
-PUT /api/tasks/:id
-Actualiza el estado "completed" de una tarea o cualquier dato enviado desde el frontend.
+\`\`\`prisma
+model Task {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+\`\`\`
 
-DELETE /api/tasks/:id
-Elimina una tarea por su ID.
+## Características
 
-La base de datos fue generada con Prisma e incluye un modelo con los campos id, title, description y completed. Prisma se encarga de mapear las operaciones del backend hacia la base de datos SQLite.
+- ✅ CRUD completo de tareas
+- ✅ Interfaz responsive y moderna
+- ✅ Validación de datos
+- ✅ Manejo de errores
+- ✅ Base de datos PostgreSQL
+- ✅ API RESTful
+- ✅ Diseño con gradientes y animaciones
+- ✅ Feedback visual al usuario
 
-El servidor Express utiliza CORS habilitado globalmente para permitir solicitudes desde el frontend.
+## Capturas de Pantalla
 
-4. Frontend: Funcionamiento interno
+[Aquí puedes agregar screenshots de tu aplicación]
 
-El frontend contiene:
+## Pruebas
 
-index.html
-Interfaz gráfica con el formulario para crear tareas y el listado.
+Para probar la aplicación:
 
-styles.css
-Estilos básicos de la aplicación.
+1. Crear varias tareas
+2. Marcar tareas como completadas
+3. Eliminar tareas
+4. Verificar que los cambios persistan (recargar la página)
 
-app.js
-Archivo encargado de realizar las peticiones fetch al backend.
+## Scripts Disponibles
 
-El funcionamiento general es:
+### Backend
+\`\`\`bash
+npm start          # Inicia el servidor
+npm run dev        # Inicia con nodemon (auto-reload)
+npx prisma studio  # Abre interfaz gráfica de la BD
+npx prisma migrate dev  # Crea nueva migración
+\`\`\`
 
-Al cargar la página, el script ejecuta una función que solicita todas las tareas al backend y las muestra.
+## Variables de Entorno
 
-Cuando el usuario crea una nueva tarea, se envía la información mediante POST a la API y luego se recarga la lista.
+Crea un archivo `.env` en la carpeta `backend/`:
 
-El botón "Completar" o "Desmarcar" envía una actualización a la API usando el método PUT.
+\`\`\`env
+DATABASE_URL="postgresql://usuario:password@localhost:5432/nombre_db"
+PORT=3000
+NODE_ENV=development
+\`\`\`
 
-El botón "Eliminar" envía una petición DELETE.
+## Problemas Comunes
 
-Todo se renderiza dinámicamente sin necesidad de recargar la página completa.
+**Error: Cannot find module 'express'**
+\`\`\`bash
+cd backend && npm install
+\`\`\`
 
-5. Problema encontrado: Error CORS al usar Live Server
-
-Al ejecutar el frontend desde Live Server o abriendo el archivo directamente en el navegador, aparece el siguiente error:
-
-"Solicitud de origen cruzado bloqueada: La política de mismo origen no permite la lectura de recursos remotos en http://localhost:4000/api/tasks
-
-."
-
-Este error ocurre porque Live Server ejecuta la página en un puerto distinto (generalmente 5500) y el backend está en el puerto 4000, lo cual provoca una restricción del navegador por política de CORS.
-
-Comportamiento observado
-
-La aplicación funciona correctamente únicamente cuando se ejecuta usando Live Preview de VS Code, debido a que este entorno maneja las solicitudes de forma distinta y no bloquea la petición.
-
-Posible solución recomendada
-
-Configurar CORS en Express de forma más explícita, permitiendo específicamente el origen donde se está ejecutando el frontend. Por ejemplo:
-
-Permitir el origen específico donde está corriendo Live Server (ejemplo: http://127.0.0.1:5500
-
-).
-
-También podría activarse un modo abierto de CORS para desarrollo, aunque no es lo recomendado en producción.
-
-6. Estructura del repositorio final
-
-El repositorio principal debe contener dos carpetas separadas:
-
-/backend
-    - server.js
-    - prisma/
-    - routes/
-    - controllers/
-    - package.json
-
-/frontend
-    - index.html
-    - styles.css
-    - app.js
-
-
-Este diseño permite trabajar el backend y frontend como proyectos independientes, pero dentro de un mismo repositorio unificado para entrega académica.
-
-7. Instrucciones para ejecutar el proyecto
-Backend
-
-Entrar a la carpeta backend.
-
-Instalar dependencias con:
-npm install
-
-Generar cliente de Prisma:
+**Error: Prisma Client not generated**
+\`\`\`bash
 npx prisma generate
+\`\`\`
 
-Ejecutar migración inicial:
-npx prisma migrate dev
+**Puerto 3000 en uso**
+- Cambia el puerto en `backend/src/server.js`
+- O detén el proceso: `lsof -ti:3000 | xargs kill`
 
-Iniciar el servidor:
-npm run dev
-o
-node server.js
+## Aprendizajes
 
-Frontend
+Este proyecto me permitió:
+- Implementar una API REST completa con Express
+- Utilizar Prisma ORM para gestionar base de datos
+- Consumir APIs con Fetch en JavaScript vanilla
+- Aplicar buenas prácticas de desarrollo web
+- Estructurar un proyecto fullstack moderno
 
-Abrir la carpeta frontend.
+## Contribuciones
 
-Abrir index.html usando:
+Este es un proyecto académico. No se aceptan contribuciones externas.
 
-Live Preview (funciona correctamente)
+## Licencia
 
-Live Server (puede presentar error CORS)
+Proyecto académico - [SENA-Analisis y desarrollo de software] 2025
 
-8. Resumen final
+## Contacto
 
-El proyecto implementa una aplicación fullstack completa con backend moderno (Express + Prisma + SQLite) y frontend interactivo en HTML y JavaScript. Se realizaron todas las operaciones CRUD y se manejó el consumo de API desde el frontend. Además, se documentó el error de CORS y su explicación, así como recomendaciones para resolverlo.
+**[Tu Nombre]**
+- Email: tu-email@ejemplo.com
+- GitHub: [https://github.com/ThomasIsaza04/FRONT-BACKEND.git]
+
+---
+
+Proyecto desarrollado como trabajo final de [Node.js]

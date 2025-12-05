@@ -1,4 +1,4 @@
-const API = "http://localhost:4000/api/tasks";
+const API = "http://localhost:3000/api/task";
 
 const taskList = document.getElementById("taskList");
 const taskForm = document.getElementById("taskForm");
